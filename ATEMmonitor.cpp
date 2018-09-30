@@ -19,6 +19,7 @@
 
 #define ATEM_maxInitPackageCount 40		// The maximum number of initialization packages. By observation on a 2M/E 4K can be up to (not fixed!) 32. We allocate a f more then...
 #define ATEM_packetBufferLength 96		// Size of packet buffer
+#define TALLY_COUNT 8
 
 SOCKET s;
 struct sockaddr_in server, si_other;
@@ -211,7 +212,7 @@ void processPayload(char* payload, char* cmdStr, uint16_t payloadlen) {
 #endif
 			}
 
-			for (uint8_t a = 0; a < 6; a++) {
+			for (uint8_t a = 0; a < TALLY_COUNT; a++) {
 				SerialCOM->WriteData('0' + atemTallyByIndexTallyFlags[a]);
 			}
 		}
